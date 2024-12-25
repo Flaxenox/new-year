@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Celebration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="clock" id="clock"></div>
+    
+    <!-- New Year Wishes Section -->
+    <div class="wishes-section">
+        <h2>Share Your New Year's Resolution</h2>
+        <form id="resolutionForm">
+            <input type="text" id="name" placeholder="Enter your name" required />
+            <textarea id="resolution" placeholder="Enter your resolution..." required></textarea>
+            <button type="submit">Submit Resolution</button>
+        </form>
+    </div>
+
+    <div class="view-button">
+        <button onclick="showPasswordPrompt()">View Resolutions</button>
+    </div>
+
+    <!-- Password Protected Resolutions -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <input type="password" id="password" placeholder="Enter password" />
+            <button onclick="checkPassword()">Submit</button>
+            <div id="resolutionList" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* General styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    background-image: url('girls-playing-shuttlecocks.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.clock {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.countdown {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.wishes-section {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+textarea {
+    width: 80%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.view-button {
+    margin-top: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
