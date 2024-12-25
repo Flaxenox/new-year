@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 2.5em;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        #time, #countdown {
+            font-size: 1.2em;
+            margin: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        #music-toggle, #quote-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        #music-toggle:hover, #quote-button:hover {
+            background-color: #c13f20;
+        }
+
+        #quote {
+            margin-top: 20px;
+            font-size: 1.5em;
+            padding: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        audio {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            #time, #countdown {
+                font-size: 1em;
+            }
+
+            #music-toggle, #quote-button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+
+            #quote {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy New Year 2024!</h1>
+    <div id="time"></div>
+    <div id="countdown"></div>
+
+    <!-- Buttons for Music and Quotes -->
+    <button id="music-toggle">🎵 Play Music</button>
+    <button id="quote-button">✨ Get a New Year Quote</button>
+
+    <div id="quote">Click the button above to see a random New Year quote!</div>
+
+    <audio id="background-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Countdown Timer Functionality
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const newYearDate = new Date('2025-01-01T00:00:00'); // New Year's Eve
+
+            setInterval(() => {
+                const now = new Date();
+                const timeRemaining = newYearDate - now;
+
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000)) / 1000);
+
+                countdownElement.innerHTML = `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+                if (timeRemaining <= 0) {
+                    countdownElement.innerHTML = "Happy New Year!";
+                }
+            }, 1000);
+        }
+
+        // Clock Functionality
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            setInterval(() => {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString();
+                timeElement.innerText = `Current Time: ${timeString}`;
+            }, 1000);
+        }
+
+        // Music Toggle Functionality
+        const musicToggle = document.getElementById('music-toggle');
+        const backgroundMusic = document.getElementById('background-music');
+        let musicPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (musicPlaying) {
+                backgroundMusic.pause();
+                musicToggle.innerText = '🎵 Play Music';
+            } else {
+                backgroundMusic.play();
+                musicToggle.innerText = '🎶 Pause Music';
+            }
+            musicPlaying = !musicPlaying;
+        });
+
+        // Random New Year Quotes
+        const quotes = [
+            "Cheers to a new year and another chance for us to get it right!",
+            "Write it on your heart that every day is the best day in the year.",
+            "The best way to predict the future is to create it.",
+            "Every end is a new beginning. Let's make it a great one!",
+            "Your success and happiness lie in you. Resolve to keep happy, and your joy will form a host against difficulties.",
+            "New year, new start, new opportunities. Embrace it all!"
+        ];
+
+        const quoteButton = document.getElementById('quote-button');
+        const quoteElement = document.getElementById('quote');
+
+        quoteButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.innerText = quotes[randomIndex];
+        });
+
+        // Initialize Functions
+        window.onload = () => {
+            updateTime();
+            updateCountdown();
+        };
+    </script>
+</body>
+</html>
