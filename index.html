@@ -12,27 +12,29 @@
             overflow: hidden;
             text-align: center;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #1e3c72, #2a5298);
             color: white;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Japanese_garden_in_Kyoto.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
 
         h1 {
             margin-top: 30px;
             font-size: 2.5em;
             animation: fadeIn 2s ease-in-out;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
         #time, #countdown {
             font-size: 1.2em;
             margin: 10px;
-            animation: fadeIn 2s ease-in-out;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
         #music-toggle, #quote-button {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 1em;
-            background-color: #ff5733;
+            background-color: rgba(255, 87, 51, 0.8);
             color: white;
             border: none;
             border-radius: 5px;
@@ -41,14 +43,18 @@
         }
 
         #music-toggle:hover, #quote-button:hover {
-            background-color: #c13f20;
+            background-color: rgba(193, 63, 32, 0.9);
         }
 
         #quote {
             margin-top: 20px;
             font-size: 1.5em;
             padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            display: inline-block;
             animation: fadeIn 2s ease-in-out;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
         audio {
@@ -88,7 +94,7 @@
     <div id="quote">Click the button above to see a random New Year quote!</div>
 
     <audio id="background-music" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mp3">
+        <source src="https://files.ceenaija.com/wp-content/uploads/music/2022/09/The_Tabernacle_Choir_-_Carol_of_the_Bells_CeeNaija.com_.mp3" type="audio/mp3">
     </audio>
 
     <script>
@@ -97,21 +103,26 @@
             const countdownElement = document.getElementById('countdown');
             const newYearDate = new Date('2025-01-01T00:00:00'); // New Year's Eve
 
-            setInterval(() => {
+            function calculateTimeLeft() {
                 const now = new Date();
                 const timeRemaining = newYearDate - now;
 
+                if (timeRemaining <= 0) {
+                    countdownElement.innerHTML = "Happy New Year!";
+                    clearInterval(timer);
+                    return;
+                }
+
                 const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeRemaining % (1000 * 60)) / (1000 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeRemaining % (1000)) / 1000);
 
                 countdownElement.innerHTML = `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
 
-                if (timeRemaining <= 0) {
-                    countdownElement.innerHTML = "Happy New Year!";
-                }
-            }, 1000);
+            const timer = setInterval(calculateTimeLeft, 1000);
+            calculateTimeLeft(); // Call immediately to avoid delay
         }
 
         // Clock Functionality
